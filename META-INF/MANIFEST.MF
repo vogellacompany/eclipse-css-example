@@ -9,4 +9,5 @@ Automatic-Module-Name: DynamicCssTester
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.swt,
  org.eclipse.jface,
- org.eclipse.e4.ui.workbench;bundle-version="1.13.0"
+ org.eclipse.e4.ui.workbench;bundle-version="1.13.0",
+ org.eclipse.e4.core.di.annotations;bundle-version="1.7.100"
