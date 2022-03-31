@@ -9,14 +9,26 @@
             name="DynamicCss"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
-               name="applicationCSS"
-               value="platform:/plugin/DynamicCssTester/css/default.css">
-         </property>
-         <property
                name="appName"
                value="DynamicCss">
          </property>
+         <property
+               name="cssTheme"
+               value="standard">
+         </property>
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/DynamicCssTester/css/default.css">
+         </property>
       </product>
+   </extension>
+   <extension
+         point="org.eclipse.e4.ui.css.swt.theme">
+      <theme
+            basestylesheeturi="css/default.css"
+            id="standard"
+            label="standard">
+      </theme>
    </extension>
 
 </plugin>
