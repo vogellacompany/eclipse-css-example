@@ -1,0 +1,65 @@
+.MPart {
+	background-color: #044169 #e3ebf3 80%;
+}
+
+Shell {
+    background-color: #044169 #e3ebf3 80%;
+}
+
+Composite {
+    background-color: #044169 #e3ebf3 80%;
+}
+
+Button {
+	background-color: white;
+	color: black;
+}
+
+Button:checked {
+    background-color: green;
+    color: white;
+}
+
+Button:disabled {
+    background-color: #e5f0f8;
+}
+
+Button:hover {
+    background-color: #80ffff;
+    color:blue;
+}
+
+ToolItem {
+	background-color: white;
+	color: black;
+}
+
+ToolItem:checked {
+    background-color: green;
+    color: white;
+}
+
+ToolItem:disabled {
+    background-color: #e5f0f8;
+}
+
+ToolItem:hover {
+    background-color: #80ffff;
+    color:blue;
+}
+
+/*
+ToolBar {
+	background-color: white;
+	color: black;
+}
+
+ToolBar:disabled {
+    background-color: #e5f0f8;
+}
+
+ToolBar:hover {
+    background-color: #80ffff;
+    color:blue;
+}
+*/
