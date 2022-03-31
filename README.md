@@ -1,4 +1,4 @@
-# SWT Dynamic CSS Example
+# Eclipse CSS Example
 
 ## Overview
 
