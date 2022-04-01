@@ -3,6 +3,7 @@
 
 <product name="DynamicCss" uid="DynamicCssProduct" id="DynamicCssTester.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" useFeatures="false" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -15,12 +16,15 @@
       </vmArgsMac>
    </launcherArgs>
 
+   <windowImages/>
+
 
    <launcher>
       <win useIco="false">
          <bmp/>
       </win>
    </launcher>
+
 
    <vm>
    </vm>

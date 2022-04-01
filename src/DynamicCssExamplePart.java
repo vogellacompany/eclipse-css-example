@@ -4,10 +4,14 @@ import javax.inject.Inject;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
@@ -31,13 +35,16 @@ public class DynamicCssExamplePart {
 	
 	@PostConstruct
 	public void postConstruct(Composite parent) {
-		parent.setLayout(RowLayoutFactory.swtDefaults().type(SWT.VERTICAL).create());
+		parent.setLayout(GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(4).create());
+
 		RowLayoutFactory verticalRowLayout = RowLayoutFactory.swtDefaults().type(SWT.VERTICAL);
+		GridDataFactory layoutDataFactory = GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.TOP);
 		
 		// RADIO
 		Group radioButtonGroup = new Group(parent, SWT.NONE);
-		radioButtonGroup.setText("RADIO");
+		radioButtonGroup.setText("Button RADIO");
 		radioButtonGroup.setLayout(verticalRowLayout.create());
+		radioButtonGroup.setLayoutData(layoutDataFactory.create());
 		
 		Button radio1 = new Button(radioButtonGroup, SWT.RADIO);
 		radio1.setText("one");
@@ -61,8 +68,9 @@ public class DynamicCssExamplePart {
 		// TOGGLE
 		Group toggleButtonGroup = new Group(parent, SWT.NONE);
 		toggleButtonGroup.setLayout(verticalRowLayout.create());
-		toggleButtonGroup.setText("TOGGLE");
-		
+		toggleButtonGroup.setText("Button TOGGLE");
+		toggleButtonGroup.setLayoutData(layoutDataFactory.create());
+
 		Button toggle1 = new Button(toggleButtonGroup, SWT.TOGGLE);
 		toggle1.setText("one");
 		toggle1.setImage(getImage(IMAGES_INFO_PNG));
@@ -80,8 +88,9 @@ public class DynamicCssExamplePart {
 		// CHECK
 		Group checkButtonGroup = new Group(parent, SWT.NONE);
 		checkButtonGroup.setLayout(verticalRowLayout.create());
-		checkButtonGroup.setText("CHECK");
-		
+		checkButtonGroup.setText("Button CHECK");
+		checkButtonGroup.setLayoutData(layoutDataFactory.create());
+
 		Button check1 = new Button(checkButtonGroup, SWT.CHECK);
 		check1.setText("one");
 		
@@ -105,7 +114,8 @@ public class DynamicCssExamplePart {
 		// PUSH
 		Group pushButtonGroup = new Group(parent, SWT.NONE);
 		pushButtonGroup.setLayout(verticalRowLayout.create());
-		pushButtonGroup.setText("PUSH");
+		pushButtonGroup.setText("Button PUSH");
+		pushButtonGroup.setLayoutData(layoutDataFactory.create());
 		
 		Button push1 = new Button(pushButtonGroup, SWT.PUSH);
 		push1.setText("enable/disable toolbar");
@@ -177,7 +187,8 @@ public class DynamicCssExamplePart {
 		// Group for toolbar			
 		Group toolbarGroup = new Group(parent, SWT.NONE);
 		toolbarGroup.setLayout(verticalRowLayout.create());
-		toolbarGroup.setText("Toolbar");
+		toolbarGroup.setLayoutData(GridDataFactory.swtDefaults().span(3, 1).align(SWT.LEFT, SWT.TOP).create());
+		toolbarGroup.setText("ToolBar");
 		
 		ToolBar toolBar = new ToolBar(toolbarGroup, SWT.FLAT | SWT.RIGHT);
 
@@ -210,6 +221,17 @@ public class DynamicCssExamplePart {
 				
 		push1.addListener(SWT.Selection, e -> toolBar.setEnabled(!toolBar.getEnabled()));
 
+		
+		// Group for Tree
+		Group treeGroup = new Group(parent, SWT.NONE);
+		treeGroup.setLayout(verticalRowLayout.create());
+		treeGroup.setLayoutData(layoutDataFactory.create());
+		treeGroup.setText("Tree");
+		
+		TreeViewer treeViewer = new TreeViewer(treeGroup, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		treeViewer.setLabelProvider(new ColumnLabelProvider());
+		treeViewer.setContentProvider(new ExampleContentProvider());
+		
 		
 	}
 

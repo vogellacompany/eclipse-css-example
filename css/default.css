@@ -1,16 +1,16 @@
 .MPart {
-	background-color: white;
+	background-color: gray;
 }
 
 Shell {
-    background-color: white;
+    background-color: gray;
 }
 
 Composite {
-    background-color: white;
+    background-color: gray;
 }
 
-Button {
+Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
 	background-color: white;
 	color: black;
 }
