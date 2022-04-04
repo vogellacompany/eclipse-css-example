@@ -7,13 +7,8 @@ import javax.annotation.PostConstruct;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.resource.LocalResourceManager;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -26,11 +21,8 @@ public class DynamicCssExamplePart {
 	private static final String IMAGES_INFO_PNG = "images/info.png";
 	private static final String IMAGES_FAVOURITE_PNG = "images/favourite.png";
 	
-	private LocalResourceManager localResourceManager;
-	
 	@Inject
 	public DynamicCssExamplePart() {
-		localResourceManager = new LocalResourceManager(JFaceResources.getResources());
 	}
 	
 	@PostConstruct
@@ -48,17 +40,15 @@ public class DynamicCssExamplePart {
 		
 		Button radio1 = new Button(radioButtonGroup, SWT.RADIO);
 		radio1.setText("one");
-		radio1.setImage(getImage(IMAGES_INFO_PNG));
+		radio1.setImage(ExampleImageProvider.getImage(IMAGES_INFO_PNG));
 		radio1.setSelection(true);
 		
 		Button radio2 = new Button(radioButtonGroup, SWT.RADIO);
 		radio2.setText("two");
-		radio2.setImage(localResourceManager.createImage(
-				ImageDescriptor.createFromFile(DynamicCssExamplePart.class, IMAGES_HELP_PNG)));
+		radio2.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		
 		Button radio3 = new Button(radioButtonGroup, SWT.RADIO);
-		radio3.setImage(localResourceManager.createImage(
-				ImageDescriptor.createFromFile(DynamicCssExamplePart.class, IMAGES_FAVOURITE_PNG)));
+		radio3.setImage(ExampleImageProvider.getImage(IMAGES_FAVOURITE_PNG));
 		
 		Button radio4 = new Button(radioButtonGroup, SWT.RADIO);
 		radio4.setText("four");
@@ -73,7 +63,7 @@ public class DynamicCssExamplePart {
 
 		Button toggle1 = new Button(toggleButtonGroup, SWT.TOGGLE);
 		toggle1.setText("one");
-		toggle1.setImage(getImage(IMAGES_INFO_PNG));
+		toggle1.setImage(ExampleImageProvider.getImage(IMAGES_INFO_PNG));
 		toggle1.setSelection(true);
 		
 		Button toggle2 = new Button(toggleButtonGroup, SWT.TOGGLE);
@@ -96,12 +86,12 @@ public class DynamicCssExamplePart {
 		
 		Button check2 = new Button(checkButtonGroup, SWT.CHECK);
 		check2.setText("two");
-		check2.setImage(getImage(IMAGES_FAVOURITE_PNG));
+		check2.setImage(ExampleImageProvider.getImage(IMAGES_FAVOURITE_PNG));
 		check2.setSelection(true);
 		
 		Button check3 = new Button(checkButtonGroup, SWT.CHECK);
 		check3.setEnabled(false);
-		check3.setImage(getImage(IMAGES_HELP_PNG));
+		check3.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		
 		Button check4 = new Button(checkButtonGroup, SWT.CHECK);
 		check4.setText("four");
@@ -123,7 +113,7 @@ public class DynamicCssExamplePart {
 		
 		Button push2 = new Button(pushButtonGroup, SWT.PUSH);
 		push2.setText("disable self");
-		push2.setImage(getImage(IMAGES_HELP_PNG));
+		push2.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		push2.addListener(SWT.Selection, event -> {
 			push2.setEnabled(false);
 		});
@@ -208,15 +198,15 @@ public class DynamicCssExamplePart {
 		toolItemRadio.addListener(SWT.Selection, e -> System.out.println("radio"));
 		
 		ToolItem toolItemIconPush = new ToolItem(toolBar, SWT.PUSH);
-		toolItemIconPush.setImage(getImage(IMAGES_INFO_PNG));
+		toolItemIconPush.setImage(ExampleImageProvider.getImage(IMAGES_INFO_PNG));
 		toolItemIconPush.addListener(SWT.Selection, e -> System.out.println("blip icon push"));
 
 		ToolItem toolItemIconCheck= new ToolItem(toolBar, SWT.CHECK);
-		toolItemIconCheck.setImage(getImage(IMAGES_FAVOURITE_PNG));
+		toolItemIconCheck.setImage(ExampleImageProvider.getImage(IMAGES_FAVOURITE_PNG));
 		toolItemIconCheck.addListener(SWT.Selection, e -> toolItemIconPush.setEnabled(!toolItemIconPush.getEnabled()));
 		
 		ToolItem toolItemIconRadio = new ToolItem(toolBar, SWT.RADIO);
-		toolItemIconRadio.setImage(getImage(IMAGES_HELP_PNG));
+		toolItemIconRadio.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		toolItemIconRadio.addListener(SWT.Selection, e -> System.out.println("blip icon radio"));
 				
 		push1.addListener(SWT.Selection, e -> toolBar.setEnabled(!toolBar.getEnabled()));
@@ -229,17 +219,13 @@ public class DynamicCssExamplePart {
 		treeGroup.setText("Tree");
 		
 		TreeViewer treeViewer = new TreeViewer(treeGroup, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		treeViewer.setLabelProvider(new ColumnLabelProvider());
+		treeViewer.setLabelProvider(new ExampleLabelProvider(treeViewer));
 		treeViewer.setContentProvider(new ExampleContentProvider());
 		
 		
 	}
 
-	private Image getImage(String image) {
-		return localResourceManager.createImage(
-				ImageDescriptor.createFromFile(DynamicCssExamplePart.class, image));
-	}
-	
+
 	
 		
 }

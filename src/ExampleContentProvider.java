@@ -4,15 +4,14 @@ public class ExampleContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
-		String[] objects = {"one", "two", "three", "five"};
+		String[] objects = {"one", "two", "three", "with image"};
 		return objects;
 	}
 
 	@Override
 	public Object[] getChildren(Object parentElement) {
-//		String[] objects = {"one", "two", "three", "five"};
-//		return objects;
-		return null;
+		String[] objects = {"one", "two", "three", "with image"};
+		return objects;
 	}
 
 	@Override
