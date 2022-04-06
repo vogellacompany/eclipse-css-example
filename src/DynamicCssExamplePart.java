@@ -7,6 +7,8 @@ import javax.annotation.PostConstruct;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
+import org.eclipse.jface.viewers.ITreeViewerListener;
+import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
@@ -215,12 +217,25 @@ public class DynamicCssExamplePart {
 		// Group for Tree
 		Group treeGroup = new Group(parent, SWT.NONE);
 		treeGroup.setLayout(verticalRowLayout.create());
-		treeGroup.setLayoutData(layoutDataFactory.create());
+		treeGroup.setLayoutData(layoutDataFactory.grab(true, true).create());
 		treeGroup.setText("Tree");
 		
 		TreeViewer treeViewer = new TreeViewer(treeGroup, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		treeViewer.setLabelProvider(new ExampleLabelProvider(treeViewer));
 		treeViewer.setContentProvider(new ExampleContentProvider());
+		treeViewer.setInput("ASDF");
+		treeViewer.addTreeListener(new ITreeViewerListener() {
+			
+			@Override
+			public void treeExpanded(TreeExpansionEvent event) {
+				treeGroup.requestLayout();
+			}
+			
+			@Override
+			public void treeCollapsed(TreeExpansionEvent event) {
+				treeGroup.requestLayout();
+			}
+		});
 		
 		
 	}
