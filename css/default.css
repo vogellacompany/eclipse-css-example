@@ -41,6 +41,11 @@ Button:hover {
     color:white;
 }
 
+.DefaultButton:disabled {
+	background-color: red;
+    color:gray;
+}
+
 ToolItem {
 	background-color: white;
 	color: black;

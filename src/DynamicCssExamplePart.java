@@ -18,19 +18,22 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
+import org.eclipse.e4.ui.css.swt.theme.IThemeEngine;
 
+@SuppressWarnings("restriction")
 public class DynamicCssExamplePart {
 	
 	private static final String IMAGES_HELP_PNG = "images/help.png";
 	private static final String IMAGES_INFO_PNG = "images/info.png";
 	private static final String IMAGES_FAVOURITE_PNG = "images/favourite.png";
 	
+	
 	@Inject
 	public DynamicCssExamplePart() {
 	}
 	
 	@PostConstruct
-	public void postConstruct(Composite parent) {
+	public void postConstruct(Composite parent, IThemeEngine themeEngine) {
 		parent.setLayout(GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(5).create());
 
 		RowLayoutFactory verticalRowLayout = RowLayoutFactory.swtDefaults().type(SWT.VERTICAL);
@@ -194,6 +197,9 @@ public class DynamicCssExamplePart {
 		defaultButtonGroup.getShell().setDefaultButton(defaultButton);
 		stdButton.addListener(SWT.Selection, event -> {
 			defaultButton.setEnabled(!defaultButton.getEnabled());
+			// Because listeners are not called by SWT when setEnabled / setSelection is called by code, 
+			// we need to trigger the styling here.
+			themeEngine.applyStyles(defaultButton, false);
 		});
 		defaultButton.setData("org.eclipse.e4.ui.css.CssClassName", "DefaultButton");
 
