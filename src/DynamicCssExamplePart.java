@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
@@ -17,6 +18,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
+
 public class DynamicCssExamplePart {
 	
 	private static final String IMAGES_HELP_PNG = "images/help.png";
@@ -29,7 +31,7 @@ public class DynamicCssExamplePart {
 	
 	@PostConstruct
 	public void postConstruct(Composite parent) {
-		parent.setLayout(GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(4).create());
+		parent.setLayout(GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(5).create());
 
 		RowLayoutFactory verticalRowLayout = RowLayoutFactory.swtDefaults().type(SWT.VERTICAL);
 		GridDataFactory layoutDataFactory = GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.TOP);
@@ -109,9 +111,9 @@ public class DynamicCssExamplePart {
 		pushButtonGroup.setText("Button PUSH");
 		pushButtonGroup.setLayoutData(layoutDataFactory.create());
 		
+		
 		Button push1 = new Button(pushButtonGroup, SWT.PUSH);
 		push1.setText("enable/disable toolbar");
-
 		
 		Button push2 = new Button(pushButtonGroup, SWT.PUSH);
 		push2.setText("disable self");
@@ -176,10 +178,43 @@ public class DynamicCssExamplePart {
 		});
 		
 		
+		// example for default button behavior
+		Group defaultButtonGroup = new Group(parent, SWT.NONE);
+		defaultButtonGroup.setLayout(verticalRowLayout.create());
+		defaultButtonGroup.setText("Default Button Group");
+		defaultButtonGroup.setLayoutData(layoutDataFactory.create());
+		
+		Button stdButton = new Button(defaultButtonGroup, SWT.PUSH);
+		stdButton.setText("enable/disable default button");
+		
+		
+		Button defaultButton = new Button(defaultButtonGroup, SWT.PUSH);
+		defaultButton.setText("Allow all cookies");
+		defaultButton.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
+		defaultButtonGroup.getShell().setDefaultButton(defaultButton);
+		stdButton.addListener(SWT.Selection, event -> {
+			defaultButton.setEnabled(!defaultButton.getEnabled());
+		});
+		defaultButton.setData("org.eclipse.e4.ui.css.CssClassName", "DefaultButton");
+
+		// Trying to style default buttons in jface dialog:
+		defaultButton.addListener(SWT.Selection, event -> {
+			MessageDialog dialog = new MessageDialog(defaultButton.getShell(), 
+					"Popup", null, "Let's style default buttons!", MessageDialog.INFORMATION, 
+					new String[]{"Not today", "OK"}, 1);
+			
+			// There is no method to retrieve and/or style the default button of the MessageDialog.
+			// Other third-party components may have inaccessible default buttons as well. 
+			
+			// dialog.getDefaultButton().setData("org.eclipse.e4.ui.css.CssClassName", "DefaultButton");
+			dialog.open();
+		});
+		
+		
 		// Group for toolbar			
 		Group toolbarGroup = new Group(parent, SWT.NONE);
 		toolbarGroup.setLayout(verticalRowLayout.create());
-		toolbarGroup.setLayoutData(GridDataFactory.swtDefaults().span(3, 1).align(SWT.LEFT, SWT.TOP).create());
+		toolbarGroup.setLayoutData(GridDataFactory.swtDefaults().span(4, 1).align(SWT.LEFT, SWT.TOP).create());
 		toolbarGroup.setText("ToolBar");
 		
 		ToolBar toolBar = new ToolBar(toolbarGroup, SWT.FLAT | SWT.RIGHT);

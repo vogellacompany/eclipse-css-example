@@ -10,7 +10,14 @@ Composite {
     background-color: gray;
 }
 
+/*
 Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
+	background-color: white;
+	color: black;
+}
+*/
+
+Button {
 	background-color: white;
 	color: black;
 }
@@ -27,6 +34,11 @@ Button:disabled {
 Button:hover {
     background-color: #80ffff;
     color:blue;
+}
+
+.DefaultButton {
+	background-color: #0071BC;
+    color:white;
 }
 
 ToolItem {
