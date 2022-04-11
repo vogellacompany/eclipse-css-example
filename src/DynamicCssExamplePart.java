@@ -77,9 +77,12 @@ public class DynamicCssExamplePart {
 		toggle2.setText("two");
 		Button toggle3 = new Button(toggleButtonGroup, SWT.TOGGLE);
 		toggle3.setText("three");
+		toggle3.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+		toggle3.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		Button toggle4 = new Button(toggleButtonGroup, SWT.TOGGLE);
 		toggle4.setText("four");
 		toggle4.setEnabled(false);
+		
 		
 		
 		// CHECK
@@ -231,13 +234,15 @@ public class DynamicCssExamplePart {
 		toolItemPush.addListener(SWT.Selection, e -> System.out.println("push"));
 
 		// trying new ToolItem API (Eclipse 4.24)
-		toolItemPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_DARK_MAGENTA));
-		toolItemPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		toolItemPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+		toolItemPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
 		ToolItem toolItemCheck = new ToolItem(toolBar, SWT.CHECK);
 		toolItemCheck.setText("Check Button");
 		toolItemCheck.setToolTipText("Check Button Tooltip");
 		toolItemCheck.addListener(SWT.Selection, e -> System.out.println("check"));
+		toolItemCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+		toolItemCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
 		ToolItem toolItemRadio = new ToolItem(toolBar, SWT.CHECK);
 		toolItemRadio.setText("Radio Button");
@@ -247,11 +252,15 @@ public class DynamicCssExamplePart {
 		ToolItem toolItemIconPush = new ToolItem(toolBar, SWT.PUSH);
 		toolItemIconPush.setImage(ExampleImageProvider.getImage(IMAGES_INFO_PNG));
 		toolItemIconPush.addListener(SWT.Selection, e -> System.out.println("blip icon push"));
+		toolItemIconPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+		toolItemIconPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		ToolItem toolItemIconCheck= new ToolItem(toolBar, SWT.CHECK);
 		toolItemIconCheck.setImage(ExampleImageProvider.getImage(IMAGES_FAVOURITE_PNG));
 		toolItemIconCheck.addListener(SWT.Selection, e -> toolItemIconPush.setEnabled(!toolItemIconPush.getEnabled()));
-		
+		toolItemIconCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+		toolItemIconCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+
 		ToolItem toolItemIconRadio = new ToolItem(toolBar, SWT.RADIO);
 		toolItemIconRadio.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		toolItemIconRadio.addListener(SWT.Selection, e -> System.out.println("blip icon radio"));

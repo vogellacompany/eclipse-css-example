@@ -17,6 +17,7 @@ Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
 }
 */
 
+/*
 Button {
 	background-color: white;
 	color: black;
@@ -35,6 +36,7 @@ Button:hover {
     background-color: #80ffff;
     color:blue;
 }
+*/
 
 .DefaultButton {
 	background-color: #0071BC;
