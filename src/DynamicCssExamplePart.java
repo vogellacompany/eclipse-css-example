@@ -229,6 +229,10 @@ public class DynamicCssExamplePart {
 		toolItemPush.setText("Text Button");
 		toolItemPush.setToolTipText("Text Button Tooltip");
 		toolItemPush.addListener(SWT.Selection, e -> System.out.println("push"));
+
+		// trying new ToolItem API (Eclipse 4.24)
+		toolItemPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_DARK_MAGENTA));
+		toolItemPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
 		
 		ToolItem toolItemCheck = new ToolItem(toolBar, SWT.CHECK);
 		toolItemCheck.setText("Check Button");

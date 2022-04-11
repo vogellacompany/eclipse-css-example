@@ -65,18 +65,9 @@ ToolItem:hover {
     color:blue;
 }
 
-/*
+
 ToolBar {
 	background-color: white;
 	color: black;
 }
 
-ToolBar:disabled {
-    background-color: #e5f0f8;
-}
-
-ToolBar:hover {
-    background-color: #80ffff;
-    color:blue;
-}
-*/
