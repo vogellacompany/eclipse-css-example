@@ -1,0 +1,21 @@
+Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
+   background-color: pink;
+}
+
+Button:checked {
+    background-color: green;
+}
+
+Button:disabled {
+    background-color: red;
+}
+
+Button:hover {
+    background-color: blue;
+}
+
+
+Button[style~='SWT.PUSH']:hover, Button[style~='SWT.TOGGLE']:hover {
+   background-color: pink;
+}
+

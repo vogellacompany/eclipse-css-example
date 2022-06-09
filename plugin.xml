@@ -14,7 +14,7 @@
          </property>
          <property
                name="cssTheme"
-               value="standard">
+               value="tooglepush">
          </property>
          <property
                name="applicationCSS"
@@ -28,6 +28,11 @@
             basestylesheeturi="css/default.css"
             id="standard"
             label="standard">
+      </theme>
+      <theme
+            basestylesheeturi="css/toogle-push.css"
+            id="tooglepush"
+            label="tooglepush">
       </theme>
    </extension>
 
