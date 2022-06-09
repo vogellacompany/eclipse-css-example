@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import javax.annotation.PostConstruct;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.layout.FillLayoutFactory;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
@@ -12,6 +13,9 @@ import org.eclipse.jface.viewers.ITreeViewerListener;
 import org.eclipse.jface.viewers.TreeExpansionEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -34,13 +38,25 @@ public class DynamicCssExamplePart {
 	
 	@PostConstruct
 	public void postConstruct(Composite parent, IThemeEngine themeEngine) {
-		parent.setLayout(GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(5).create());
+		parent.setLayout(FillLayoutFactory.fillDefaults().create());
 
 		RowLayoutFactory verticalRowLayout = RowLayoutFactory.swtDefaults().type(SWT.VERTICAL);
 		GridDataFactory layoutDataFactory = GridDataFactory.swtDefaults().align(SWT.LEFT, SWT.TOP);
 		
+		
+		CTabFolder cTabFolder = new CTabFolder(parent, SWT.NONE);
+		CTabItem tabItem = new CTabItem(cTabFolder, SWT.NONE);
+		tabItem.setText("Buttons");
+		Composite buttonComposite = new Composite(cTabFolder, SWT.BORDER);
+	
+		var gridLayoutButtons = GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(5).create();
+		
+		buttonComposite.setLayout(gridLayoutButtons);
+		
+		
 		// RADIO
-		Group radioButtonGroup = new Group(parent, SWT.NONE);
+		// RADIO
+		Group radioButtonGroup = new Group(buttonComposite, SWT.NONE);
 		radioButtonGroup.setText("Button RADIO");
 		radioButtonGroup.setLayout(verticalRowLayout.create());
 		radioButtonGroup.setLayoutData(layoutDataFactory.create());
@@ -63,7 +79,7 @@ public class DynamicCssExamplePart {
 		
 		
 		// TOGGLE
-		Group toggleButtonGroup = new Group(parent, SWT.NONE);
+		Group toggleButtonGroup = new Group(buttonComposite, SWT.NONE);
 		toggleButtonGroup.setLayout(verticalRowLayout.create());
 		toggleButtonGroup.setText("Button TOGGLE");
 		toggleButtonGroup.setLayoutData(layoutDataFactory.create());
@@ -83,7 +99,7 @@ public class DynamicCssExamplePart {
 		
 		
 		// CHECK
-		Group checkButtonGroup = new Group(parent, SWT.NONE);
+		Group checkButtonGroup = new Group(buttonComposite, SWT.NONE);
 		checkButtonGroup.setLayout(verticalRowLayout.create());
 		checkButtonGroup.setText("Button CHECK");
 		checkButtonGroup.setLayoutData(layoutDataFactory.create());
@@ -109,7 +125,7 @@ public class DynamicCssExamplePart {
 		
 		
 		// PUSH
-		Group pushButtonGroup = new Group(parent, SWT.NONE);
+		Group pushButtonGroup = new Group(buttonComposite, SWT.NONE);
 		pushButtonGroup.setLayout(verticalRowLayout.create());
 		pushButtonGroup.setText("Button PUSH");
 		pushButtonGroup.setLayoutData(layoutDataFactory.create());
@@ -182,7 +198,7 @@ public class DynamicCssExamplePart {
 		
 		
 		// example for default button behavior
-		Group defaultButtonGroup = new Group(parent, SWT.NONE);
+		Group defaultButtonGroup = new Group(buttonComposite, SWT.NONE);
 		defaultButtonGroup.setLayout(verticalRowLayout.create());
 		defaultButtonGroup.setText("Default Button Group");
 		defaultButtonGroup.setLayoutData(layoutDataFactory.create());
@@ -216,9 +232,18 @@ public class DynamicCssExamplePart {
 			dialog.open();
 		});
 		
+		tabItem.setControl(buttonComposite);
+		CTabItem toolItemTab = new CTabItem(cTabFolder, SWT.NONE);
+		toolItemTab.setText("Tool Items and Tree");
+		Composite toolItemsComposite = new Composite(cTabFolder, SWT.BORDER);
+		
+		var gridLayoutToolItems= GridLayoutFactory.swtDefaults().margins(24,24).spacing(24,24).numColumns(5).create();
+		
+		toolItemsComposite.setLayout(gridLayoutToolItems);
+		
 		
 		// Group for toolbar			
-		Group toolbarGroup = new Group(parent, SWT.NONE);
+		Group toolbarGroup = new Group(toolItemsComposite, SWT.NONE);
 		toolbarGroup.setLayout(verticalRowLayout.create());
 		toolbarGroup.setLayoutData(GridDataFactory.swtDefaults().span(4, 1).align(SWT.LEFT, SWT.TOP).create());
 		toolbarGroup.setText("ToolBar");
@@ -256,7 +281,7 @@ public class DynamicCssExamplePart {
 
 		
 		// Group for Tree
-		Group treeGroup = new Group(parent, SWT.NONE);
+		Group treeGroup = new Group(toolItemsComposite, SWT.NONE);
 		treeGroup.setLayout(verticalRowLayout.create());
 		treeGroup.setLayoutData(layoutDataFactory.grab(true, true).create());
 		treeGroup.setText("Tree");
@@ -278,6 +303,8 @@ public class DynamicCssExamplePart {
 			}
 		});
 		
+		
+		toolItemTab.setControl(toolItemsComposite);
 		
 	}
 
