@@ -1,0 +1,93 @@
+.MPart {
+	background-color: white;
+}
+
+Shell {
+    background-color: #F7F7F7;
+}
+
+Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
+	background-color: white;
+	color: #33393d; /* #00080d on white with 0.8 transparency */
+}
+
+Button[style~='SWT.PUSH']:hover, Button[style~='SWT.TOGGLE']:hover {
+    background-color: #E8F1F7;
+    color: #2e373c; /* #00080d on #E8F1F7 with 0.8 transparency */   
+}
+
+/* what about pressed? #D2E3EF */
+
+Button[style~='SWT.PUSH']:checked, Button[style~='SWT.TOGGLE']:checked {
+    background-color: #054169; /* BRUKER_PACIFIC */;
+    color: white;
+}
+
+Button[style~='SWT.PUSH']:disabled, Button[style~='SWT.TOGGLE']:disabled {
+    background-color: #F5F5F5;
+    color: #7b7f81; /* #00080d on #F5F5F5 with 0.5 transparency */;
+}
+
+
+
+.DefaultButton[style~='SWT.PUSH'], .DefaultButton[style~='SWT.CHECK'] {
+	background-color: #0071BC; /* BRUKER_BLUE / Bright Blue */
+    color:white;
+}
+
+.DefaultButton[style~='SWT.PUSH']:hover, .DefaultButton[style~='SWT.CHECK']:hover {
+	background-color: #195680; /* DISABLEDBLUE */
+    color:white;
+}
+
+.DefaultButton[style~='SWT.PUSH']:checked, .DefaultButton[style~='SWT.CHECK']:checked {
+	background-color: #054169; /* BRUKER_PACIFIC */
+    color:white;
+}
+
+.DefaultButton[style~='SWT.PUSH']:disabled, .DefaultButton[style~='SWT.CHECK']:disabled {
+	background-color: #E8F1F7; /* BUTTON_MOUSE_OVER_BG */
+    color: #bac2c8; /* #00080d on #E8F1F7 with 0.2 transparency */
+}
+
+
+
+ToolItem {
+	background-color: white;
+	color: #33393d; /* #00080d on white with 0.8 transparency */
+}
+
+ToolItem:hover {
+    background-color: #E8F1F7;
+    color: #2e373c;
+}
+
+ToolItem:checked {
+    background-color: #054169; /* BRUKER_PACIFIC */
+    color: white;
+}
+
+ToolItem:disabled {
+    background-color: #E8F1F7; /* BUTTON_MOUSE_OVER_BG */
+    color: #bac2c8; /* #00080d on #E8F1F7 with 0.2 transparency */
+}
+
+ToolBar {
+	background-color: white;
+	color: black;
+}
+
+
+.MyTree {
+	background-color: #F7F7F7; /* background-grey */
+}
+
+
+.MPartStack {
+	background-color: white;
+	swt-corner-radius: 8;
+	swt-selected-tabs-background: white;
+	swt-outer-keyline-color: #FF9300; /* Differential Colors: highlight orange */
+}
+
+

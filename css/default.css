@@ -1,75 +1,91 @@
 .MPart {
-	background-color: gray;
+	background-color: white;
 }
 
 Shell {
-    background-color: gray;
+    background-color: #F7F7F7;
 }
 
-Composite {
-    background-color: gray;
-}
-
-/*
 Button[style~='SWT.PUSH'], Button[style~='SWT.TOGGLE'] {
 	background-color: white;
-	color: black;
-}
-*/
-
-/*
-Button {
-	background-color: white;
-	color: black;
+	color: #33393d; 
 }
 
-Button:checked {
-    background-color: green;
+Button[style~='SWT.PUSH']:hover, Button[style~='SWT.TOGGLE']:hover {
+    background-color: #b27cf7;
+    color: #452a66;
+}
+
+Button[style~='SWT.PUSH']:checked, Button[style~='SWT.TOGGLE']:checked {
+    background-color: #452a66;
     color: white;
 }
 
-Button:disabled {
-    background-color: #e5f0f8;
+Button[style~='SWT.PUSH']:disabled, Button[style~='SWT.TOGGLE']:disabled {
+    background-color: #F5F5F5;
+    color: #7b7f81;
 }
 
-Button:hover {
-    background-color: #80ffff;
-    color:blue;
-}
-*/
 
-.DefaultButton {
-	background-color: #0071BC;
+
+.DefaultButton[style~='SWT.PUSH'], .DefaultButton[style~='SWT.TOGGLE'] {
+	background-color: #f78f5f; 
     color:white;
 }
 
-.DefaultButton:disabled {
-	background-color: red;
-    color:gray;
+.DefaultButton[style~='SWT.PUSH']:hover, .DefaultButton[style~='SWT.TOGGLE']:hover {
+	background-color: #ff464b;
+    color: black;
 }
+
+.DefaultButton[style~='SWT.PUSH']:checked, .DefaultButton[style~='SWT.TOGGLE']:checked {
+	background-color: black;
+    color: #f7602f;
+}
+
+.DefaultButton[style~='SWT.PUSH']:disabled, .DefaultButton[style~='SWT.TOGGLE']:disabled {
+	background-color: #ffce4b;
+    color: gray;
+}
+
+
 
 ToolItem {
 	background-color: white;
-	color: black;
+	color: #33393d; /* #00080d on white with 0.8 transparency */
+}
+
+ToolItem:hover {
+    background-color: #b27cf7;
+    color: #452a66;
 }
 
 ToolItem:checked {
-    background-color: green;
+    background-color: #452a66;
     color: white;
 }
 
 ToolItem:disabled {
-    background-color: #e5f0f8;
+    background-color: #F5F5F5;
+    color: #7b7f81;
 }
-
-ToolItem:hover {
-    background-color: #80ffff;
-    color:blue;
-}
-
 
 ToolBar {
 	background-color: white;
 	color: black;
 }
+
+
+.MyTree {
+	background-color: #F7F7F7;
+}
+
+
+.MPartStack {
+	background-color: white;
+	swt-corner-radius: 8;
+	swt-selected-tabs-background: white;
+	swt-outer-keyline-color: #FF9300;
+}
+
 

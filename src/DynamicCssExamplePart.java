@@ -2,9 +2,14 @@
 
 import javax.inject.Inject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.annotation.PostConstruct;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.PlainMessageDialog;
+import org.eclipse.jface.dialogs.PlainMessageDialog.Builder;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.RowLayoutFactory;
@@ -76,7 +81,7 @@ public class DynamicCssExamplePart {
 		Button toggle2 = new Button(toggleButtonGroup, SWT.TOGGLE);
 		toggle2.setText("two");
 		Button toggle3 = new Button(toggleButtonGroup, SWT.TOGGLE);
-		toggle3.setText("three");
+		toggle3.setText("enable/disable tree");
 		toggle3.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
 		toggle3.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		Button toggle4 = new Button(toggleButtonGroup, SWT.TOGGLE);
@@ -156,6 +161,10 @@ public class DynamicCssExamplePart {
 			push1.setEnabled(enabled);
 			push2.setEnabled(enabled);
 			push3.setEnabled(enabled);
+			
+			// Because listeners are not called by SWT when setEnabled / setSelection is called by code, 
+			// we need to trigger the styling here. Quite ugly:
+			themeEngine.applyStyles(parent, true);
 		});
 		
 		Button push5 = new Button(pushButtonGroup, SWT.PUSH);
@@ -181,6 +190,10 @@ public class DynamicCssExamplePart {
 			push1.setEnabled(enabled);
 			push2.setEnabled(enabled);
 			push3.setEnabled(enabled);
+			
+			// Because listeners are not called by SWT when setEnabled / setSelection is called by code, 
+			// we need to trigger the styling here. Quite ugly:
+			themeEngine.applyStyles(parent, true);
 		});
 		
 		
@@ -195,11 +208,12 @@ public class DynamicCssExamplePart {
 		
 		
 		Button defaultButton = new Button(defaultButtonGroup, SWT.PUSH);
-		defaultButton.setText("Allow all cookies");
+		defaultButton.setText("Eat all cookies");
 		defaultButton.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
 		defaultButtonGroup.getShell().setDefaultButton(defaultButton);
 		stdButton.addListener(SWT.Selection, event -> {
 			defaultButton.setEnabled(!defaultButton.getEnabled());
+			
 			// Because listeners are not called by SWT when setEnabled / setSelection is called by code, 
 			// we need to trigger the styling here.
 			themeEngine.applyStyles(defaultButton, false);
@@ -207,15 +221,15 @@ public class DynamicCssExamplePart {
 		defaultButton.setData("org.eclipse.e4.ui.css.CssClassName", "DefaultButton");
 
 		// Trying to style default buttons in jface dialog:
+		ArrayList<String> buttonStrings = new ArrayList<>(Arrays.asList("OK", "Not today"));
 		defaultButton.addListener(SWT.Selection, event -> {
-			MessageDialog dialog = new MessageDialog(defaultButton.getShell(), 
-					"Popup", null, "Let's style default buttons!", MessageDialog.INFORMATION, 
-					new String[]{"Not today", "OK"}, 1);
-			
-			// There is no method to retrieve and/or style the default button of the MessageDialog.
+			PlainMessageDialog dialog = PlainMessageDialog.getBuilder(defaultButton.getShell(), "Popup").message("Let's style default buttons!").buttonLabels(buttonStrings).defaultButtonIndex(1).build();
+						
+			// There is no method to retrieve and/or style the default button of the MessageDialog or PlainMessageDialog.
 			// Other third-party components may have inaccessible default buttons as well. 
-			
+			// Not possible:
 			// dialog.getDefaultButton().setData("org.eclipse.e4.ui.css.CssClassName", "DefaultButton");
+
 			dialog.open();
 		});
 		
@@ -234,15 +248,15 @@ public class DynamicCssExamplePart {
 		toolItemPush.addListener(SWT.Selection, e -> System.out.println("push"));
 
 		// trying new ToolItem API (Eclipse 4.24)
-		toolItemPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
-		toolItemPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+//		toolItemPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+//		toolItemPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
 		ToolItem toolItemCheck = new ToolItem(toolBar, SWT.CHECK);
 		toolItemCheck.setText("Check Button");
 		toolItemCheck.setToolTipText("Check Button Tooltip");
 		toolItemCheck.addListener(SWT.Selection, e -> System.out.println("check"));
-		toolItemCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
-		toolItemCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+//		toolItemCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+//		toolItemCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
 		ToolItem toolItemRadio = new ToolItem(toolBar, SWT.CHECK);
 		toolItemRadio.setText("Radio Button");
@@ -252,14 +266,14 @@ public class DynamicCssExamplePart {
 		ToolItem toolItemIconPush = new ToolItem(toolBar, SWT.PUSH);
 		toolItemIconPush.setImage(ExampleImageProvider.getImage(IMAGES_INFO_PNG));
 		toolItemIconPush.addListener(SWT.Selection, e -> System.out.println("blip icon push"));
-		toolItemIconPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
-		toolItemIconPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+//		toolItemIconPush.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+//		toolItemIconPush.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		ToolItem toolItemIconCheck= new ToolItem(toolBar, SWT.CHECK);
 		toolItemIconCheck.setImage(ExampleImageProvider.getImage(IMAGES_FAVOURITE_PNG));
-		toolItemIconCheck.addListener(SWT.Selection, e -> toolItemIconPush.setEnabled(!toolItemIconPush.getEnabled()));
-		toolItemIconCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
-		toolItemIconCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
+		toolItemIconCheck.addListener(SWT.Selection, e -> toolItemPush.setEnabled(!toolItemPush.getEnabled()));
+//		toolItemIconCheck.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_YELLOW));
+//		toolItemIconCheck.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		ToolItem toolItemIconRadio = new ToolItem(toolBar, SWT.RADIO);
 		toolItemIconRadio.setImage(ExampleImageProvider.getImage(IMAGES_HELP_PNG));
@@ -291,6 +305,11 @@ public class DynamicCssExamplePart {
 			}
 		});
 		
+		treeViewer.getTree().setData("org.eclipse.e4.ui.css.CssClassName", "MyTree");
+		toggle3.addListener(SWT.Selection, event -> {
+			treeViewer.getControl().setEnabled(toggle3.getSelection());
+		});
+
 		
 	}
 

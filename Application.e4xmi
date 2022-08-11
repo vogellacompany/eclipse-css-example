@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_GkLOYE3oEeyg3Nj7FUC6zw" elementId="DynamicCssTester.application">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_Ivf2cE3oEeyg3Nj7FUC6zw" elementId="dynamiccsstester.trimmedwindow.0">
-    <children xsi:type="basic:Part" xmi:id="_KGoogE3oEeyg3Nj7FUC6zw" elementId="dynamiccsstester.part.0" contributionURI="bundleclass://DynamicCssTester/DynamicCssExamplePart"/>
-    <mainMenu xmi:id="_GxlOgLHQEeycW60RqP-gqg" elementId="org.eclipse.ui.main.menu"/>
-    <trimBars xmi:id="_qPmiALDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.trimbar.0">
-      <children xsi:type="menu:ToolBar" xmi:id="_quIRELDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.toolbar.0">
-        <children xsi:type="menu:DirectToolItem" xmi:id="_rR9W4LDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.directtoolitem.stuff" label="Stuff" iconURI="platform:/plugin/DynamicCssTester/images/help.png" contributionURI="bundleclass://DynamicCssTester/HandlerExample"/>
-        <children xsi:type="menu:DirectToolItem" xmi:id="_tgwwwLDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.directtoolitem.morestuff" label="More stuff" iconURI="platform:/plugin/DynamicCssTester/images/info.png" contributionURI="bundleclass://DynamicCssTester/HandlerExample"/>
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_Ivf2cE3oEeyg3Nj7FUC6zw" elementId="dynamiccsstester.trimmedwindow.0" width="1200" height="800">
+    <children xsi:type="basic:PartStack" xmi:id="_ZfOVIPb3EeysE-jeiGU_Lw" elementId="dynamiccsstester.partstack.0" selectedElement="_KGoogE3oEeyg3Nj7FUC6zw">
+      <children xsi:type="basic:Part" xmi:id="_KGoogE3oEeyg3Nj7FUC6zw" elementId="dynamiccsstester.part.examples" contributionURI="bundleclass://DynamicCssTester/DynamicCssExamplePart" label="Button Examples">
+        <toolbar xmi:id="_c0SXAPb4EeysE-jeiGU_Lw" elementId="dynamiccsstester.toolbar.0">
+          <children xsi:type="menu:DirectToolItem" xmi:id="_rR9W4LDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.directtoolitem.stuff" label="Stuff" iconURI="platform:/plugin/DynamicCssTester/images/help.png" contributionURI="bundleclass://DynamicCssTester/HandlerExample"/>
+          <children xsi:type="menu:DirectToolItem" xmi:id="_tgwwwLDuEeydF4Tu1PEC-Q" elementId="dynamiccsstester.directtoolitem.morestuff" label="More stuff" iconURI="platform:/plugin/DynamicCssTester/images/info.png" contributionURI="bundleclass://DynamicCssTester/HandlerExample"/>
+        </toolbar>
       </children>
-    </trimBars>
+    </children>
+    <mainMenu xmi:id="_GxlOgLHQEeycW60RqP-gqg" elementId="org.eclipse.ui.main.menu"/>
   </children>
   <addons xmi:id="_GkLOYU3oEeyg3Nj7FUC6zw" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_GkLOYk3oEeyg3Nj7FUC6zw" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
